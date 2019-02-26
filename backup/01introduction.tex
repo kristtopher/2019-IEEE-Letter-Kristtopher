@@ -1,0 +1,24 @@
+Market forecasts that worldwide shipments of wearable computing devices will reach 225 million in 2019, an increase of 25.8 percent from 2018, having as major drivers
+fitness and healthcare gadgets~\cite{Li:2018}. 
+Wearable computing devices have rapidly become popular due to advancements in micro and nanoelectronics, and 
+wireless communication. Wireless communication is essential for these advancements, once it allows the connection between devices in and around the human body, including low-rate devices like pedometers and high-rate devices like augmented-reality glasses. This communication relies on different standards such as 
+those from the IEEE 802.15 family 
+or the next generation mmWave 5G cellular. 
+
+As the popularity and user-reliance on wearable devices increase, there has been an emergence of new and varied attack vectors targeting privacy intrusions, that so far cannot be addressed by classical techniques developed for Internet applications. Our goal in this letter is to empirically evaluate the existing most representative lightweight cryptography algorithms with regard to 
+the requirements of wearable networks, such as high security and low computational resources. Most existing studies have investigated these requirements either from a software perspective~\cite{eisenbarth2012compact,kerckhof2012towards,eisenbarth2007survey} or by simulations and analytic models~\cite{cazorla2013survey,el2017equalized}. For the best of our knowledge, ours is the first to follow a hardware-driven and empirical evaluation, highlighting the impacts of the hardware specificity to cryptography algorithms in wearable devices.
+
+Analysis lies on symmetric cryptography, which the communicating wearable devices know {\em a priori} the key employed to encrypt messages. 
+Particularly, we focus our investigations on two different classes of symmetric lightweight 
+encryption algorithms, as XTEA, XXTEA, SKIPJACK and RC2 (block ciphers)~\cite{Moh:2015}, RC4 (stream cipher). 
+For our hardware-driven evaluation approach, we have designed and implemented a cryptography library useful for wireless wearable devices\footnote{Available at: \url{https://github.com/UFV-Alumni/lib_crypto}}. For energy consumption measurements, we have designed a circuit and integrated it in the Shimmer platform\footnote{\url{http://www.shimmersensing.com}}.  
+The energy consumption evaluation has followed a methodology adapted from Bessa et al.~\cite{bessa2017jetsonleap}, in which 
+we assess the power dissipation from wearable devices while they are in sleeping, idle and running states. 
+Our analyses rely on IEEE 802.15.1 (Bluetooth) and 802.15.4 (ZigBee), as communication standards. 
+
+Results confirm the strong correlation between the amount of logic/arithmetic operations required to encrypt data block or stream, and their respective energy consumption.
+Results point out the SKIPJACK algorithm as the most efficient among the evaluated algorithms in terms of energy consumption and security. 
+Evaluated scenarios employing ZigBee present lower energy consumption than those employing Bluetooth.
+
+This letter presents: the lightweight cryptography algorithms for wearable devices (Section~\ref{sec:Background}); the designed experiments and methodology (Section~\ref{sec:Methodology}); the discussion of the obtained results (Section~\ref{sec:Results}); and conclusions (Section~\ref{sec:Conclusion}).
+

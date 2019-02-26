@@ -1,0 +1,73 @@
+%O custo computacional das operações lógicas e aritméticas possuem intervenção direta no tempo de processamento e consumo pelos nós sensores. As operações descritas são: \textit{shift left}, \textit{shift right}, \textit{and}, \textit{or}, \textit{not}, \textit{XOR}, soma, subtração e multiplicação. A Tabela~\ref{tab:comp} apresenta a quantidade de operações para cada método avaliado. A contagem é relativa à função de criptografia, uma vez que a função reversa além, de apresentar as mesmas características, é realizada pelos nós coordenadores ou estações de tratamento dos dados. Deste modo, os dados referentes ao consumo apresentam uma correlação direta com o número de operações. Assim temos novamente o destaque positivo para o Skipjack, com menor número de operações para cifrar um bloco de dados de 64 bits; e com maior número de operações, o RC4 . Os demais métodos ainda apresentam a mesma ordem de classificação se comparados à análise de dissipação de energia.
+
+The computational cost of logical and arithmetic operations has direct effect in processing time and wearable device energy consumption. The operations considered are: shift left, shift right, and, or, not, xor, sum, subtraction, and multiplication. Table~\ref{tab:comp} shows the number of operations for each evaluated algorithm. The count is relative to the encryption function, once the wearable device performs this function, but not decryption. % function , besides having the same features, is performed by the coordinating nodes or data processing stations.
+Thus, energy consumption has a direct correlation with the number of operations. We again have a positive observation for SKIPJACK, with fewer operations to encrypt a 64-bit data block. %; and with more operations, RC4. 
+%The other algorithms still have the same classification order as the energy dissipation analysis.
+
+
+\begin{table}[tbh]
+\scriptsize
+\centering
+\begin{tabular}{l|c|c|c} 
+\hline
+ALGORITHM  & \begin{tabular}[c]{@{}c@{}}KEY SIZES\\(BITS) \end{tabular} & \begin{tabular}[c]{@{}c@{}}NUMBER OF\\OPERATIONS \end{tabular}  & \begin{tabular}[c]{@{}c@{}}MEMORY\\CONSUMPTION\\(BYTES) \end{tabular} \\ 
+\hline
+SKIPJACK & 80  & 496  & 7442 \\
+XTEA     & 128 & 576  & 7384 \\
+RC2      & 128 & 804  & 7512 \\
+XXTEA    & 128 & 1490 & 7668 \\
+RC4      & 128 & 1992 & 7598 \\
+AES      & 128 & 2704 & 26046\\
+\hline
+\end{tabular}
+\caption{Computational cost of logical/arithmetic operations}
+\label{tab:comp}
+%\vspace{-0.3cm}
+\end{table}
+
+
+
+%Outros dados levantados na Tabela~\ref{tab:comp} são alusivos ao consumo de recursos de memória. Ao compilar os métodos de criptografia utilizando o NesC, algumas informações são relatadas, entre elas o consumo de memória ROM e RAM. Para coletar tais informações relativas ao tamanho de cada método, estes foram  compilados de forma independente de qualquer outra função. Deste modo é possível afirmar que os dados apresentados referem-se exatamente ao tamanho de cada método. Com base nisso podemos notar que a diferença em alocação total de recursos é baixa, cerca de 3.85\% entre os métodos da família XTEA, os quais apresentam maior disparidade.
+
+Table~\ref{tab:comp} also shows information about memory use (including ROM and RAM usage) for the implementation of each cryptography algorithms using NesC. %. When compiling the implementations of the cryptography algorithms using NesC, some information is reported, . 
+To collect such information, we have compiled the implementation of each algorithm independently of any other function. Hence, we can affirm that the presented data refer exactly to the use by the implementation of each algorithm. We  observe  a  low  difference  in  total  resource allocation (about 3.85\%) between XTEA and SKIPJACK.
+%XTEA, before the SKIPJACK.
+
+%\rever{o valor de consumo de memória é fixo. O compilador apresenta o mesmo consumo para cada algoritmo}:
+
+%NAO ENTENDI ESTE COMENTARIO. DEIXEI AQUI.
+
+%\abv{acho que podemos fazer um paragrafo mais suave, já que falamos de criptanalises quando descrevemos os algoritmos na seção acima. Algo como Recall that, as shown in Section XXX, SKIPJACK and RC4 are the algorithms ...}
+
+Table~\ref{tab:instr} compares the number of Assembly instructions for the implementation of each evaluated algorithm. We have counted the number of Assembly instructions with the help of the Godbolt online compiler and a manual process known as Table Test. The Godbolt compiler converts programs from several languages into Assembly code. It allows us to have an Assembly code that really reflects the instructions compiled for Shimmer wearable devices. For the experiment we use the MSP430 gcc compiler version 5.3.0 without optimization directives and then we convert the NesC code to Assembly code. Next, using the Table Test we have counted the final number of Assembly instructions. Table~\ref{tab:instr} also shows the asymptotic complexity of each algorithm.% based on the number of repetitions of the most costly loop.
+
+%Since they operate on a fixed-size (64-bit) data set, which makes the complexity independent of the input size.
+
+\begin{table}[tbh]
+\scriptsize
+\centering
+\setlength\tabcolsep{5pt} % default value: 6pt
+\begin{tabular}{l|c|c|c|c|c} 
+\hline
+ALGORITHM  & \begin{tabular}[c]{@{}c@{}}\#INSTR.\\PER\\ROUND \end{tabular} & \begin{tabular}[c]{@{}c@{}}\#ROUNDS \end{tabular}  & \begin{tabular}[c]{@{}c@{}}MAIN\\LOOP \end{tabular} &
+\begin{tabular}[c]{@{}c@{}}TOTAL\\\#INSTR. \end{tabular} &
+\begin{tabular}[c]{@{}c@{}}COMPLEXITY \end{tabular} \\ 
+\hline
+SKIPJACK & 20 / 21  & 32 & 665   & 760   & $O(1)$\\
+XTEA     & 37       & 32 & 1184  & 1206  & $O(1)$\\
+RC2      & 95 / 118 & 16 & 1550  & 1645  & $O(1)$\\
+XXTEA    & 479      & 12 & 5748  & 5776  & $O(n)$\\
+RC4      & 50       & 8  & 400   & 10677 & $O(n)$\\
+AES      & 2404     & 9  & 21636 & 24117 & $O(1)$\\
+\hline
+\end{tabular}
+\caption{Number of Assembly instructions }
+\label{tab:instr}
+%\vspace{-0.3cm}
+\end{table}
+
+
+Related to cryptanalysis, complementing the information presented in Section~\ref{sec:Background}, we analyze the thread-off between energy consumption and the level of security for each algorithm. %By countering the extremes, 
+SKIPJACK and RC4 are the two extremes, i.e., SKIPJACK is the best and RC4 is the worst in terms of energy consumption versus security level.
+%\abv{o que é extreme? \rever {estes dois algoritimos são os extremos da avaliação (melhor e pior)} } among the evaluated algorithms. 
+SKIPJACK shows again advantages, because it has time complexity for key recovery of $2^{48}$ versus $2^{13}$ of RC4. Compared  to  XTEA  and  XXTEA, SKIPJACK shows low efficiency in relation to key recovery through plaintexts, being similar to RC2.

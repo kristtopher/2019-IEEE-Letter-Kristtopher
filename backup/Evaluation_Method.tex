@@ -1,0 +1,14 @@
+%Os dados amostrados pelo software ALICE representam a intensidade da corrente antes e depois de passar pelo resistor, através dos canais CH\_A e CH\_B. Deste modo, o cálculo do consumo é realizado da seguinte maneira: $I = ((CH\_A -CH\_B) / 0.10) * 1000$ mA. Portanto, para este método, podemos extrair algumas métricas para avaliar o consumo energético dos algoritmos aplicados a cada estado do nó. Tais métricas são a média e o consumo total no tempo para as amostras, e a função de distribuição acumulada (CDF). 
+
+The software ALICE samples the current intensity before and after passing through the resistor through the channels CH\_A and CH\_B. Then, consumption follows: $ I = ((CH\_A - CH\_B) / 0.10) * 1000 $ mA. Therefore, %for this method, 
+we can %extract some metrics to 
+calculate the energy consumption, mean, and the total consumption time for the algorithms in each analyzed state for the wearable device. %Such metrics are the mean and the total time consumption for the samples, in addition to the cumulative distribution function (CDF).
+%
+%Empiricamente, outras métricas relativas à complexidade computacional dos métodos de criptografia também possuem grande relevância neste cenário de avaliação. Tal importância é justificada pelo fato do gargalo do consumo energético ocorrer durante o processamento e transmissão dos dados. Por este motivo avaliamos também o conjunto de operações lógicas e aritméticas computadas, o que permite inferir o tempo de processamento gasto entre os métodos criptográficos. Consideramos ainda o levantamento criptoanalítico apresentado na Seção~\ref{sec:Algorithms} e o tamanho do código de máquina gerado. Uma vez que este representa uma grande parcela do consumo de recursos de hardware.
+%
+Also, the computational complexity of the algorithms is of great relevance because energy consumption bottlenecks occur during data processing and transmission. Hence,  
+%
+%Empirically, other metrics related to the computational complexity of cryptographic methods are also of great relevance in this evaluation scenario. The importance is justified by the fact that the energy consumption bottleneck occurs during data processing and transmission. For this reason 
+%
+we also evaluate the set of logic and arithmetic operations, which allows us to infer the processing time spent by the cryptography algorithms. We also consider %the cryptoanalytic survey presented in Section~\ref{sec:Algorithms} and 
+the size of machine code, since this represents a large share of the hardware resource consumption.
